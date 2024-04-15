@@ -1,3 +1,4 @@
+import 'package:ciber_rating/presentation/auth.dart';
 import 'package:ciber_rating/presentation/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:ciber_rating/presentation/home.dart';
@@ -7,10 +8,11 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: signUp(),
+      home: authPage(),
       routes:{
         '/home': (context) => Home(),
         '/signUp': (context) => const signUp(),
+        '/auth': (context) => const authPage()
       }
     );
   }
