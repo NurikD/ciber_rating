@@ -8,11 +8,11 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: authPage(),
+      home: Home(),
       routes:{
         '/home': (context) => Home(),
         '/signUp': (context) => const signUp(),
-        '/auth': (context) => const authPage()
+        '/auth': (context) => const authPage(),
       }
     );
   }
