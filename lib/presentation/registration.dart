@@ -15,7 +15,7 @@ class _signUpState extends State<signUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff000527),
+      backgroundColor: const Color(0xff000527),
       body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +154,7 @@ class _signUpState extends State<signUp> {
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(const Color(0xffB7B1ED)),
                                   padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
-                                  minimumSize: MaterialStateProperty.all(Size(200, 50)),
+                                  minimumSize: MaterialStateProperty.all(const Size(200, 50)),
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),

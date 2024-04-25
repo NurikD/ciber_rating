@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,6 +6,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // Создайте список элементов, которые будут отображаться в таблице.
+  final List<Map<String, dynamic>> _tableData = List.generate(
+    50,
+    (index) => {
+      "rank": "${index + 1}",
+      "user": "Magic",
+      "level": "5555",
+      "matches": "323",
+      "wins": "129",
+      "winRate": "55%",
+      "totalHours": "6,543",
+      "color": Colors.accents[index % Colors.accents.length],
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +38,7 @@ class _HomeState extends State<Home> {
                     width: 66,
                     height: 66,
                   ),
-                   SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -35,9 +46,7 @@ class _HomeState extends State<Home> {
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -45,13 +54,9 @@ class _HomeState extends State<Home> {
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                   DropdownMenu(),
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.03
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -67,10 +72,13 @@ class _HomeState extends State<Home> {
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ),
-                  Text('|', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),),
+                  const Text(
+                    '|',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -80,21 +88,138 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const Spacer(),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.85,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color(0xFF272C49),
+              Expanded(
+                // Используйте Expanded вместо контейнера с фиксированной высотой
+                child: SingleChildScrollView(
+                  // Добавьте прокрутку, если содержимое не помещается на экран
+                  child: Column(
+                    children: [
+                      _buildTableHeader(), // Создайте функцию для построения заголовка таблицы
+                      ..._tableData
+                          .map((data) => _buildTableRow(data))
+                          .toList(),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  children: [],
-                ),
-              )
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildTableHeader() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color(0xFF5B5781),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: const [
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text('RANK',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 2,
+              child: Center(
+                  child: Text('USER',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text('LEVEL',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text('MATCHES',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text('WINS',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text('WIN RATE',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 2,
+              child: Center(
+                  child: Text('TOTAL HOURS',
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTableRow(Map<String, dynamic> data) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      decoration: BoxDecoration(
+        color: Color(0xFF3C3F58),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(data["rank"],
+                      style: TextStyle(color: data["color"], fontSize: 18)))),
+          Expanded(
+              flex: 2,
+              child: Center(
+                  child: Text(data["user"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(data["level"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(data["matches"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(data["wins"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(data["winRate"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+          Expanded(
+              flex: 2,
+              child: Center(
+                  child: Text(data["totalHours"],
+                      style:
+                          TextStyle(color: Color(0xFFBCBBBB), fontSize: 18)))),
+        ],
       ),
     );
   }
