@@ -66,7 +66,9 @@ class _HomeState extends State<Home> {
                   ),
                   const Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/auth');
+                    },
                     child: const Text(
                       'Вход',
                       style: TextStyle(color: Colors.white, fontSize: 24),
@@ -80,7 +82,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/auth');
+                    },
                     child: const Text(
                       'Регистрация',
                       style: TextStyle(color: Colors.white, fontSize: 24),
